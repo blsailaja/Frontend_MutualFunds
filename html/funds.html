@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funds Management</title>
+    <style>
+         /* Reset and basic styles */
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Top Navbar Styles */
+        .navbar {
+            background-color: #000;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #f0e68c;
+        }
+
+        .navbar .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .profile img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        /* Sidebar Styles */
+        .container {
+            display: flex;
+            width: 100%;
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #000;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #444;
+        }
+
+        .sidebar ul li .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            background-color: #333;
+            width: 100%;
+            padding-left: 10px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar ul li:hover .dropdown-content {
+            display: block;
+        }
+
+        .sidebar ul li .dropdown-content a {
+            color: #fff;
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .sidebar ul li .dropdown-content a:hover {
+            background-color: #555;
+        }
+        .main-content {
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        .section-header {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section-header h1 {
+            font-size: 32px;
+        }
+
+        .balance, .funds-list {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .balance h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #444;
+        }
+
+        .list-header {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .edit-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .sidebar {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">Fundsense</div>
+        <nav class="top-nav">
+            <div class="nav-links">
+                <a href="admindashboard.html">Dashboard</a>
+              
+                <a href="login.html">LogOut</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <ul>
+                <ul>
+                    <li><a href="overview.html">Overview</a></li>
+                    <li><a href="user.html">Users</a></li>
+                    <li><a href="analysis.html">Analysis</a></li>
+                    <li>
+                        <a href="#">Funds <span class="dropdown-icon">&#9660;</span></a>
+                        <div class="dropdown-content">
+                            <a href="funds.html">Funds</a>
+                            <a href="funds-details.html">Funds Details</a>
+                            <a href="fund-edit.html">Funds Edit</a>
+                        </div>
+                    </li>
+                </ul>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Section for Adding New Funds -->
+            <div class="section-header">
+                <h1>Manage Funds</h1>
+            </div>
+
+            <div class="balance">
+                <h2>Add a New Fund</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="fund-name">Fund Name</label>
+                        <input type="text" id="fund-name" placeholder="Enter fund name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fund-amount">Amount</label>
+                        <input type="number" id="fund-amount" placeholder="Enter fund amount">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fund-type">Fund Type</label>
+                        <select id="fund-type">
+                            <option value="equity">Equity</option>
+                            <option value="debt">Debt</option>
+                            <option value="balanced">Balanced</option>
+                        </select>
+                    </div>
+
+                    <button class="btn" type="submit">Add Fund</button>
+                </form>
+            </div>
+
+            <!-- List of Funds -->
+            <div class="funds-list">
+                <div class="list-header">Funds List</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fund Name</th>
+                            <th>Amount</th>
+                            <th>Fund Type</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Growth Fund</td>
+                            <td>$50,000</td>
+                            <td>Equity</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="edit-btn">Edit</button>
+                                    <button class="delete-btn">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Income Fund</td>
+                            <td>$25,000</td>
+                            <td>Debt</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="edit-btn">Edit</button>
+                                    <button class="delete-btn">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

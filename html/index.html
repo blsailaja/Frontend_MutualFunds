@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundsense - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+       /* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text */
+}
+
+header {
+    background-color: #000000; /* Black header */
+    color: white; /* White text */
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    transition: background-color 0.3s;
+}
+
+.logo img {
+    height: 60px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: white; /* White text */
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Light gray hover */
+}
+
+.hero {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center vertically */
+    justify-content: space-between; /* Space out items */
+    padding: 100px 20px; /* Adjust padding as necessary */
+    background: #000000; /* Black background */
+    color: white; /* White text */
+}
+
+.hero-content {
+    flex: 1; /* Allow this section to take available space */
+    max-width: 50%; /* Limit width for better layout */
+}
+
+.hero-gif {
+    max-width: 40%; /* Set the width of the GIF */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-right: 20px; /* Add space between title and image */
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 40px;
+    max-width: 600px;
+}
+
+.btn {
+    color: #fff; /* Black button text */
+    background-color: #000; /* White button background */
+    padding: 15px 30px;
+    border: 1px solid #000; /* Black border */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.btn1 {
+    color: #000; /* Black text */
+    background-color: #ffffff; /* White button background */
+    padding: 15px 30px;
+    border: 1px solid #000; /* Black border */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background-color: #d9d9d9; /* Light gray on hover */
+}
+.strategies {
+    padding: 50px 20px;
+    background-color: #ffffff; /* White background */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.strategies h2 {
+    font-size: 36px;
+    color: #000; /* Black text */
+}
+
+.strategies-buttons {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.strategy-button {
+    background-color: #ffffff; /* White background */
+    border: 1px solid #000; /* Black border */
+    color: #000; /* Black text */
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s; /* Added transform transition */
+    width: 150px;
+    text-align: center;
+}
+
+.strategy-button:hover {
+    background-color: #d9d9d9; /* Light gray on hover */
+    transform: scale(1.1); /* Scale effect on hover */
+}
+
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #000000; /* Black footer */
+    color: white; /* White text */
+}
+
+/* New Content Section */
+.content-section {
+    padding: 50px 20px;
+    background-color: #ffffff; /* White background */
+    display: flex;
+}
+
+.content-left {
+    flex: 1; /* Take up 1 part of the flex space */
+    margin-right: 20px; /* Space between left and right sections */
+}
+
+.content-left h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #000; /* Black text */
+}
+
+.content-right {
+    flex: 2; /* Take up 2 parts of the flex space */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 20px;
+}
+
+.content-item {
+    background-color: #e7e7e7; /* Light gray box background */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.content-item h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.view-all {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff; /* Blue text */
+    font-weight: bold;
+}
+
+.testimonials {
+    background-color: #ffffff; /* White background */
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.testimonial-item {
+    margin: 20px 0;
+    font-style: italic;
+    color: #666; /* Gray text */
+}
+
+.calculator-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the start */
+    padding: 30px;
+    background-color: #000; /* Light gray background */
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.calculator-header {
+    flex: 1; /* Take up 1 part of the flex space */
+    padding-right: 20px; /* Space between header and calculator */
+}
+
+.calculator-header h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333; /* Dark gray text */
+}
+
+.calculator {
+    flex: 2; /* Take up 2 parts of the flex space */
+    background-color: #000; /* Black background */
+    padding: 20px; /* Reduced padding */
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.calculator label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+    color: #ffffff; /* White text */
+}
+
+.calculator input {
+    margin: 10px 0;
+    padding: 15px;
+    width: calc(100% - 22px);
+    border: 1px solid #ffffff; /* White border */
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #333; /* Dark gray background */
+    color: #ffffff; /* White text */
+}
+
+.calculator button {
+    flex: 2;
+    display: block;
+    width: 50%;
+    padding: 15px;
+    background-color: #007bff; /* Blue button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.calculator button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.02);
+}
+
+.calculator p {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #fff; /* Black text */
+    text-align: center;
+    font-weight: bold;
+}
+.calculator-image {
+    width: 375px; /* Set the width to a smaller size */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 15px; /* Space between image and heading */
+}
+
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe; /* White background */
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888; /* Gray border */
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa; /* Gray */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black; /* Black on hover */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column; /* Stack content vertically */
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%; /* Full width on mobile */
+    }
+
+    .hero-gif {
+        max-width: 80%; /* Adjust GIF size */
+    }
+
+    .strategies {
+        flex-direction: column; /* Stack strategies vertically */
+        align-items: center; /* Center items */
+    }
+
+    .strategy-button {
+        width: 100%; /* Full width on mobile */
+    }
+
+    .content-section {
+        flex-direction: column; /* Stack content on smaller screens */
+    }
+
+    .content-left {
+        margin-right: 0; /* Remove right margin */
+    }
+
+    .calculator {
+        width: 100%; /* Full width on mobile */
+    }
+
+    .calculator button {
+        width: 100%; /* Full width button on mobile */
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1 style="font-size: 24px; color: white;">Fundsense.</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#signup.html" class="btn">Sign Up</a></li>
+                <li><a href="login.html" class="btn">Login </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h2>Your Financial Success Awaits !!</h2>
+            <p>Transforming world, investing sustainably is key to creating a better future and delivering superior investment returns.</p>
+            <button class="btn1">Invest Now</button>
+        </div>
+        <img src="/images/mutualfunds.gif" alt="Mutual Funds GIF" class="hero-gif" />
+    </div>
+    
+
+    <section class="strategies">
+        <h2>Investment Strategies</h2>
+        <div class="strategies-buttons">
+            <div class="strategy-button">Investment Planning</div>
+            <div class="strategy-button">Tax Optimization</div>
+            <div class="strategy-button">Retirement Planning</div>
+            <div class="strategy-button">Estate Planning</div>
+            <div class="strategy-button">Equality</div>
+            <div class="strategy-button">Healthcare</div>
+            <div class="strategy-button">Consumer</div>
+            <div class="strategy-button">Multi Asset</div>
+            <div class="strategy-button">Infrastructure</div>
+        </div>
+    </section>
+
+    <!-- New Content Section -->
+    <div class="content-section">
+        <div class="content-left">
+            <h2>Welcome to Fundsense !!</h2>
+            <p>At Fundsense, we specialize in helping you navigate the complex world of investing. Our team of experts is here to guide you in making informed investment decisions that align with your financial goals.</p>
+        </div>
+        <div class="content-right">
+            <div class="content-item">
+                <h3>Strategic Planning</h3>
+                <p>Comprehensive investment strategies tailored to your needs.</p>
+                <a href="#" class="view-all">View All</a>
+            </div>
+            <div class="content-item">
+                <h3>Market Analysis</h3>
+                <p>Stay updated with the latest market trends and insights.</p>
+                <a href="#" class="view-all">View All</a>
+            </div>
+            <div class="content-item">
+                <h3>Personal Finance</h3>
+                <p>Expert advice on managing personal finances effectively.</p>
+                <a href="#" class="view-all">View All</a>
+            </div>
+            <div class="content-item">
+                <h3>Investment Tips</h3>
+                <p>Proven strategies to grow your wealth and secure your future.</p>
+                <a href="#" class="view-all">View All</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="testimonials">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial-item">
+            <p>"Fundsense helped me achieve my financial goals!" - Client Name</p>
+        </div>
+        <div class="testimonial-item">
+            <p>"Excellent service and great investment advice." - Client Name</p>
+        </div>
+    </div>
+
+   <!-- Investment Calculator -->
+<div class="calculator-container">
+    <div class="calculator-header">
+        <h2 style="color: white;">Investment Calculator</h2>
+
+        <img src="/images/CALCULATOR.jpg"alt="Investment Calculator" class="calculator-image"/>
+    </div>
+    <div class="calculator">
+        <label for="amount">Investment Amount:</label>
+        <input type="number" id="amount" placeholder="Enter amount">
+        
+        <label for="rate">Annual Interest Rate (%):</label>
+        <input type="number" id="rate" placeholder="Enter rate">
+        
+        <label for="years">Investment Period (Years):</label>
+        <input type="number" id="years" placeholder="Enter years">
+        
+        <button onclick="calculateReturns()">Calculate Returns</button>
+        <p id="result"></p>
+    </div>
+</div>
+
+
+    <footer>
+        <div>
+            <p>&copy; 2024 Fundsense. All rights reserved.</p>
+            
+        </div>
+    </footer>
+
+    <!-- JavaScript for Investment Calculator -->
+    <script>
+        function calculateReturns() {
+            const amount = document.getElementById('amount').value;
+            const rate = document.getElementById('rate').value;
+            const years = document.getElementById('years').value;
+
+            const total = (amount * Math.pow((1 + (rate / 100)), years)).toFixed(2);
+            document.getElementById('result').innerText = 'Total Returns: Rs.' + total;
+        }
+
+       
+        
+    </script>
+
+    
+    </div>
+</body>
+</html>

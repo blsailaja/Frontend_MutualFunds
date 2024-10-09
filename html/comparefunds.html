@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Mutual Funds</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        h1, h2 {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 16px;
+            font-weight: normal;
+            color: #666;
+        }
+
+        /* Table Styles */
+        .fund-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .fund-table th, .fund-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .fund-table th {
+            background-color: #f7f7f7;
+            font-weight: bold;
+        }
+
+        /* Button Style */
+        .add-fund-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            background-color: #f9f9f9;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-fund-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .add-fund-button svg {
+            fill: #007bff;
+        }
+
+        .add-fund-button span {
+            margin-left: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .compare-heading {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+          /* Modal Styles */
+          .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            color: white;
+            background-color: #00c853;
+            padding: 15px;
+            border-radius: 5px 5px 0 0;
+            margin: -20px -20px 20px -20px;
+        }
+
+        .modal-content input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .modal-content img {
+            margin-top: 30px;
+            width: 150px;
+            height: auto;
+        }
+
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Compare Funds</h1>
+        <h2>Detailed comparison on parameters like NAV | Returns | Risk | Rating | Analysis</h2>
+    </div>
+
+    <!-- Add Fund Buttons Section -->
+    <table class="fund-table">
+        <thead>
+            <tr>
+                <th>
+                    <div class="add-fund-button" onclick="openModal()">
+                        <img src="/images/plus.png" width="40" height="40"/>
+                            <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+                        </img>
+                        <span>Add a fund</span>
+                    </div>
+                </th>
+                <th>
+                    <div class="add-fund-button" onclick="openModal()">
+                        <img src="/images/plus.png" width="40" height="40"/>
+                            <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+                        </svg>
+                        <span>Add a fund</span>
+                    </div>
+                </th>
+                <th>
+                    <div class="add-fund-button" onclick="openModal()">
+                        <img src="/images/plus.png" width="40" height="40"/>
+                            <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+                        </svg>
+                        <span>Add a fund</span>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+    </table>
+
+    <!-- Fund Details Section -->
+    <h3 class="compare-heading">Fund Details</h3>
+    <table class="fund-table">
+        <thead>
+            <tr>
+                <th>Fund Detail</th>
+                <th>Fund 1</th>
+                <th>Fund 2</th>
+                <th>Fund 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Risk</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Min SIP Amount</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Expense Ratio</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>NAV</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Returns Section -->
+    <h3 class="compare-heading">Returns</h3>
+    <table class="fund-table">
+        <thead>
+            <tr>
+                <th>Returns</th>
+                <th>Fund 1</th>
+                <th>Fund 2</th>
+                <th>Fund 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1 Year</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>3 Years</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>5 Years</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
+<!-- The Modal -->
+<div id="fundModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Search for mutual funds here</h2>
+        <input type="text" placeholder="Search fund" />
+        <img src="/images/search.png" alt="search image" />
+    </div>
+</div>
+</div>
+
+</body>
+<script>
+    // Get modal element
+    const modal = document.getElementById("fundModal");
+
+    // Function to open modal
+    function openModal() {
+        modal.style.display = "block";
+    }
+
+    // Function to close modal
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+</html>

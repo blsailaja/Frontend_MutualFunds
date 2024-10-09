@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis</title>
+    <style>
+          /* Reset and basic styles */
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Top Navbar Styles */
+        .navbar {
+            background-color: #000;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #f0e68c;
+        }
+
+        .navbar .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .profile img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        /* Sidebar Styles */
+        .container {
+            display: flex;
+            width: 100%;
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #000;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #444;
+        }
+
+        .sidebar ul li .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            background-color: #333;
+            width: 100%;
+            padding-left: 10px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar ul li:hover .dropdown-content {
+            display: block;
+        }
+
+        .sidebar ul li .dropdown-content a {
+            color: #fff;
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .sidebar ul li .dropdown-content a:hover {
+            background-color: #555;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .section-header h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .chart-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chart {
+            width: 48%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* SIP Table Styles */
+        .sip-table {
+            margin-top: 30px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .sip-table th, .sip-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .sip-table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        /* Button Styles */
+        .btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="navbar">
+        <div class="logo">FundSense.</div>
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="login.html">Log Out</a>
+        </div>
+        <div class="profile">
+            <img src="https://via.placeholder.com/40" alt="Profile">
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Menu -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="overview.html">Overview</a></li>
+                <li><a href="analysis.html">Analysis</a></li>
+                <li>
+                    <a href="#">Funds</a>
+                    <div class="dropdown-content">
+                        <a href="funds.html">Funds</a>
+                        <a href="funds-details.html">Funds Details</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h1>Funds and Users Analysis</h1>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="chart-container">
+                <div class="chart">
+                    <canvas id="fundsAnalysisChart"></canvas>
+                </div>
+                <div class="chart">
+                    <canvas id="userAnalysisChart"></canvas>
+                </div>
+            </div>
+
+            <!-- SIP Table -->
+            <h2>SIP Analysis</h2>
+            <table class="sip-table">
+                <thead>
+                    <tr>
+                        <th>Investment Amount (Rs)</th>
+                        <th>Duration (Years)</th>
+                        <th>Expected Return (%)</th>
+                        <th>Final Amount (Rs)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>50,000</td>
+                        <td>5</td>
+                        <td>12</td>
+                        <td>89,348</td>
+                    </tr>
+                    <tr>
+                        <td>30,000</td>
+                        <td>3</td>
+                        <td>10</td>
+                        <td>39,938</td>
+                    </tr>
+                    <tr>
+                        <td>20,000</td>
+                        <td>4</td>
+                        <td>15</td>
+                        <td>44,172</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn" onclick="calculateSIP()">Calculate New SIP</button>
+        </div>
+    </div>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Funds Analysis Chart
+        var ctxFunds = document.getElementById('fundsAnalysisChart').getContext('2d');
+        var fundsChart = new Chart(ctxFunds, {
+            type: 'bar',
+            data: {
+                labels: ['Fund 1', 'Fund 2', 'Fund 3', 'Fund 4'],
+                datasets: [{
+                    label: 'Fund Performance',
+                    data: [50000, 40000, 60000, 70000],
+                    backgroundColor: ['#36a2eb', '#ffce56', '#ff6384', '#8e5ea2'],
+                    borderColor: ['#36a2eb', '#ffce56', '#ff6384', '#8e5ea2'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Amount (Rs)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Users Analysis Chart
+        var ctxUsers = document.getElementById('userAnalysisChart').getContext('2d');
+        var userChart = new Chart(ctxUsers, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'New Users',
+                    data: [100, 150, 200, 250],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Users'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Function to calculate SIP returns
+        function calculateSIP() {
+            // Logic to calculate and display SIP returns can be implemented here
+            alert('SIP calculation functionality coming soon!');
+        }
+    </script>
+</body>
+</html>

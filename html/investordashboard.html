@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: #000;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .navbar .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .profile img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar .notifications {
+            position: relative;
+            margin-right: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .navbar .notifications .badge {
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 12px;
+            position: absolute;
+            top: -5px;
+            right: -10px;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #000;
+            padding: 20px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .date-range {
+            font-size: 16px;
+            color: #888;
+        }
+
+        .summary {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .profit-change {
+            color: green;
+            font-size: 16px;
+        }
+
+        .loss-change {
+            color: red;
+            font-size: 16px;
+        }
+
+        .portfolio {
+            margin-top: 30px;
+        }
+
+        .portfolio h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .current-value, .profit-revenue {
+            background-color: white;
+            padding: 15px;
+            margin-right: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .current-value h3, .profit-revenue h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .chart {
+            margin-top: 20px;
+        }
+
+        #performanceChart {
+            max-width: 100%;
+            height: 200px;
+        }
+
+        /* Investment Categories and Wallet Sections */
+        .investment-wallet-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .investment-categories, .wallet {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .investment-categories {
+            width: 40%;
+            height: 40%;
+        }
+
+        .wallet {
+            width: 35%;
+            text-align: center;
+        }
+
+        .investment-categories h3, .wallet h3 {
+            font-size: 22px;
+            margin-bottom: 40px;
+        }
+
+        .investment-summary {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .investment-summary div {
+            width: 30%;
+        }
+
+        .investment-summary div p {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .wallet h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .wallet p {
+            font-size: 16px;
+            color: #888;
+        }
+
+        .wallet .wallet-performance {
+            max-width: 100%;
+            height: 300px;
+        }
+
+        #categoryChart {
+            max-width: 100%;
+            height: 500px;
+        }
+        .investment-categories {
+            max-width: 100%;
+            height: 300px;
+}
+    </style>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="navbar">
+        <div class="logo">FundSense.</div>
+        <div class="nav-links">
+            <a href="investordashboard.html">Dashboard</a>
+            <a href="#">Portfolio</a>
+            <a href="#">Transaction</a>
+            <a href="#">News</a>
+            <li><a href="login.html">LogOut</a></li>
+        </div>
+        <div class="profile">
+            <div class="notifications">
+                <i class="fa fa-bell"></i>
+                <span class="badge">9+</span>
+            </div>
+            <img src="https://via.placeholder.com/40" alt="Profile">
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Menu -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="investordashboard.html">Dashboard</a></li>
+                <li><a href="wallet.html">Wallet</a></li>
+                <li><a href="goals.html">My Goals</a></li>
+                <li><a href="loans.html">My Loans</a></li>
+                <li><a href="investment.html">Investment</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="calculator.html">Calculators</a></li>
+             
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header>
+                <h1>Good Morning, Investor</h1>
+                <div class="date-range">19/03/2024 - 25/03/2024</div>
+            </header>
+            
+            <section class="summary">
+                <div class="card total-profit">
+                    <h3>Total Profit</h3>
+                    <p>$13.20k</p>
+                    <span class="profit-change">+28.50%</span>
+                </div>
+                <div class="card best-profit">
+                    <h3>Best Profit</h3>
+                    <p>$8.34k</p>
+                    <span class="profit-change">+54.35%</span>
+                </div>
+                <div class="card top-loser">
+                    <h3>Top Loser</h3>
+                    <p>-$5.15k</p>
+                    <span class="loss-change">-18.25%</span>
+                </div>
+            </section>
+
+            <section class="portfolio">
+                <h2>Your portfolio value has grown by $7.52k</h2>
+                <div class="current-value">
+                    <h3>Current Value</h3>
+                    <p>$65.52k</p>
+                    <span>+18.5%</span>
+                </div>
+                <div class="profit-revenue">
+                    <h3>Profit Revenue</h3>
+                    <p>$15.51k</p>
+                    <span>+11.5%</span>
+                </div>
+            </section>
+
+            <section class="chart">
+                <h3>Performance Chart</h3>
+                <canvas id="performanceChart"></canvas>
+            </section>
+
+            <!-- Investment Categories and Wallet Sections -->
+            <section class="investment-wallet-section">
+                <!-- Investment Categories -->
+                <div class="investment-categories">
+                    <h3>Investment Categories</h3>
+                    <canvas id="categoryChart"></canvas>
+                    <div class="investment-summary">
+                        <div>
+                            <p>Share Holdings</p>
+                            <span>$165.52k</span> <br />
+                            <span>+25.30%</span>
+                        </div>
+                        <div>
+                            <p>Bank Bonds</p>
+                            <span>$356.26k</span> <br />
+                            <span>+20.18%</span>
+                        </div>
+                        <div>
+                            <p>Fixed Deposit</p>
+                            <span>$190.45k</span> <br />
+                            <span>+18.50%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wallet -->
+                <div class="wallet">
+                    <h3>My Wallet</h3>
+                    <h2>$1152.25k</h2>
+                    <p>Total net revenue is $756.83</p>
+                    <span class="profit-change">+11.5% increased in last week</span>
+
+                    <div class="wallet-performance">
+                        <canvas id="walletChart"></canvas>
+                    </div>
+
+                    <p>Top performing investment is <strong>Share Holdings</strong></p>
+                    <span>$165.52k</span> <br />
+                    <span>+25.30%</span>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Performance Line Chart
+        var ctx = document.getElementById('performanceChart').getContext('2d');
+        var performanceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['19/03', '20/03', '21/03', '22/03', '23/03', '24/03', '25/03'],
+                datasets: [{
+                    label: 'Profit Revenue',
+                    data: [4, 6, 5, 8, 10, 12, 16],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Investment Categories Donut Chart
+        var categoryCtx = document.getElementById('categoryChart').getContext('2d');
+        var categoryChart = new Chart(categoryCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Share Holdings', 'Mutual Funds', 'Bank Bonds', 'Gov. Securities', 'Fixed Deposit'],
+                datasets: [{
+                    label: 'Investment Categories',
+                    data: [165.52, 265.85, 356.26, 185.65, 190.45],
+                    backgroundColor: ['#36a2eb', '#ffce56', '#ff6384', '#8e5ea2', '#3cba9f'],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Wallet Bar Chart
+        var walletCtx = document.getElementById('walletChart').getContext('2d');
+        var walletChart = new Chart(walletCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Wallet Performance',
+                    data: [150, 300, 250, 400],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundsense - Role Dashboard</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000; /* Black background */
+            color: #ffffff; /* White text */
+        }
+
+        header {
+            background-color: #000000; /* Black header */
+            color: white; /* White text */
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            color: white;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
+        }
+
+        .container {
+            padding: 50px;
+            text-align: center;
+        }
+
+        .container h1 {
+            margin-bottom: 20px;
+        }
+
+        .container a {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .container a:hover {
+            background-color: #45a049;
+        }
+
+        .login-box {
+            background-color: #1c1c1c; /* Dark gray background */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            background-color: #333333;
+            color: white;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .google-btn {
+            background-color: #4285F4;
+        }
+
+        .google-btn:hover {
+            background-color: #357AE8;
+        }
+
+        .divider {
+            margin: 20px 0;
+            color: #cccccc;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Fundsense</div>
+        <nav id="mainNavbar">
+            <ul id="defaultNav">
+                <li><a href="#" onclick="showLogin('Admin')">Admin</a></li>
+                <li><a href="#" onclick="showLogin('Advisor')">Advisor</a></li>
+                <li><a href="#" onclick="showLogin('Investor')">Investor</a></li>
+                <li><a href="#" onclick="showLogin('Analyst')">Analyst</a></li>
+            </ul>
+
+            <!-- Navbar for logged-in roles -->
+            <ul id="loggedInNav" class="hidden">
+                <li><a href="#" id="dashboardLink">Dashboard</a></li>
+                <li><a href="#" onclick="logout()">Log Out</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div id="loginSection">
+            <h1>Select your role to login</h1>
+        </div>
+
+        <!-- Login form -->
+        <div class="login-box hidden" id="loginBox">
+            <h2 id="roleTitle">Login</h2>
+            
+            <!-- Email and Password Login -->
+            <form onsubmit="return handleLogin()">
+                <input type="email" class="input-field" id="email" name="email" placeholder="Email" required>
+                <input type="password" class="input-field" id="password" name="password" placeholder="Password" required>
+                <button type="submit" class="btn">Login</button>
+            </form>
+
+            <div class="divider">OR</div>
+            
+            <!-- Google OAuth Login -->
+            <button class="btn google-btn" id="googleLoginBtn" onclick="googleLogin()">Login with Google</button>
+
+            <p><a href="#">Forgot password?</a></p>
+        </div>
+    </div>
+
+    
+    <script>
+        let currentRole = '';
+    
+        function showLogin(role) {
+            currentRole = role;
+            document.getElementById('loginSection').classList.add('hidden');
+            document.getElementById('loginBox').classList.remove('hidden');
+            document.getElementById('roleTitle').innerText = role + ' Login';
+        }
+    
+        function handleLogin() {
+            alert(currentRole + ' logged in successfully!');
+    
+            // Redirect to specific dashboard based on the role
+            if (currentRole === 'Investor') {
+                window.location.href = 'investordashboard.html';
+            } 
+            if (currentRole === 'Admin') {
+                window.location.href = 'admindashboard.html';
+            } 
+            
+            if (currentRole === 'Analyst') {
+                window.location.href = 'analystdashboard.html';
+            } 
+            if (currentRole === 'Advisor') {
+                window.location.href = 'advisordashboard.html';
+            } 
+            else {
+                // Set the dashboard link based on the role
+                document.getElementById('dashboardLink').setAttribute('href', currentRole.toLowerCase() + 'dashboard.html');
+    
+                // Change navbar to the role-specific one after login
+                document.getElementById('mainNavbar').classList.add('logged-in');
+                document.getElementById('defaultNav').classList.add('hidden');
+                document.getElementById('loggedInNav').classList.remove('hidden');
+            }
+    
+            return false; // Prevent actual form submission for demo purposes
+        }
+    
+        function googleLogin() {
+            alert('Redirecting to Google login for ' + currentRole + '...');
+        }
+    
+        function logout() {
+            alert(currentRole + ' logged out successfully!');
+    
+            // Reset navbar to default
+            document.getElementById('defaultNav').classList.remove('hidden');
+            document.getElementById('loggedInNav').classList.add('hidden');
+        }
+    </script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advisor & Investor Management</title>
+    <style>
+         /* Reset and basic styles */
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Top Navbar Styles */
+        .navbar {
+            background-color: #000;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #f0e68c;
+        }
+
+        .navbar .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .profile img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        /* Sidebar Styles */
+        .container {
+            display: flex;
+            width: 100%;
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #000;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #444;
+        }
+
+        .sidebar ul li .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            background-color: #333;
+            width: 100%;
+            padding-left: 10px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar ul li:hover .dropdown-content {
+            display: block;
+        }
+
+        .sidebar ul li .dropdown-content a {
+            color: #fff;
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .sidebar ul li .dropdown-content a:hover {
+            background-color: #555;
+        }
+        .main-content {
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        .section-header {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section-header h1 {
+            font-size: 32px;
+        }
+
+        .balance, .investors-list, .advisors-list {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .balance h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #444;
+        }
+
+        .list-header {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .edit-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .sidebar {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">Fundsense</div>
+        <nav class="top-nav">
+            <div class="nav-links">
+                <a href="admindashboard.html">Dashboard</a>
+                <a href="login.html">LogOut</a>
+               
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <!-- Sidebar Menu -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="overview.html">Overview</a></li>
+                <li><a href="user.html">Users</a></li>
+                <li><a href="analysis.html">Analysis</a></li>
+                <li>
+                    <a href="#">Funds</a>
+                    <div class="dropdown-content">
+                        <a href="funds.html">Funds</a>
+                        <a href="funds-details.html">Funds Details</a>
+                        <a href="funds-edit.html">Funds Edit</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Section for Managing Advisors -->
+            <div class="section-header">
+                <h1>Manage Advisors</h1>
+            </div>
+
+            <div class="balance">
+                <h2>Add a New Advisor</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="advisor-name">Advisor Name</label>
+                        <input type="text" id="advisor-name" placeholder="Enter advisor name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="advisor-email">Advisor Email</label>
+                        <input type="email" id="advisor-email" placeholder="Enter advisor email">
+                    </div>
+
+                    <button class="btn" type="submit">Add Advisor</button>
+                </form>
+            </div>
+
+            <!-- List of Advisors -->
+            <div class="advisors-list">
+                <div class="list-header">Advisors List</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Advisor Name</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John Doe</td>
+                            <td>john.doe@example.com</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="edit-btn">Edit</button>
+                                    <button class="delete-btn">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Jane Smith</td>
+                            <td>jane.smith@example.com</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="edit-btn">Edit</button>
+                                    <button class="delete-btn">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Section for Viewing Investors List -->
+            <div class="investors-list">
+                <div class="list-header">Investors List</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Investor Name</th>
+                            <th>Amount Invested</th>
+                            <th>Investment Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Alice Johnson</td>
+                            <td>$10,000</td>
+                            <td>01/09/2024</td>
+                        </tr>
+                        <tr>
+                            <td>Bob Lee</td>
+                            <td>$5,000</td>
+                            <td>15/08/2024</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

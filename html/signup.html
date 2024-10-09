@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundsense - Employee Signup</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #000000; /* Black background */
+            color: #ffffff; /* White text */
+        }
+
+        header {
+            background-color: #000000; /* Black header */
+            color: white; /* White text */
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white; /* White text */
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Light gray hover */
+        }
+
+        .signup-container {
+            max-width: 500px; /* Limit width for form */
+            margin: 50px auto; /* Center the form */
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1); /* Light translucent background */
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        .signup-container h2 {
+            text-align: center; /* Center title */
+            margin-bottom: 20px;
+            color: #ffffff; /* White text */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block; /* Make label a block element */
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%; /* Full width */
+            padding: 10px; /* Padding inside inputs */
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 5px; /* Rounded corners */
+            background: rgba(255, 255, 255, 0.2); /* Slightly translucent background */
+            color: #ffffff; /* White text */
+        }
+
+        input[type="submit"] {
+            background: #4CAF50; /* Green background */
+            color: white; /* White text */
+            border: none; /* No border */
+            padding: 10px 15px; /* Padding */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer on hover */
+            transition: background 0.3s;
+            width: 100%; /* Full width */
+        }
+
+        input[type="submit"]:hover {
+            background: #45a049; /* Darker green on hover */
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #000000; /* Black footer */
+            color: white; /* White text */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1 style="font-size: 24px; color: white;">Fundsense.</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="signup-container">
+        <h2>Employee Signup</h2>
+        <form id="signupForm" onsubmit="return handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <input type="submit" value="Sign Up">
+        </form>
+        <div id="successMessage" style="display:none; margin-top: 20px; text-align: center; color: #4CAF50;">
+            Message sent successfully!
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Fundsense. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block'; // Show success message
+            document.getElementById('signupForm').reset(); // Reset the form
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>

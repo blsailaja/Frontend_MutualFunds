@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - FundSense</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/blog.css">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+    }
+
+    body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        background-color: #f4f4f4;
+    }
+
+    .navbar {
+        background-color: #000;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .navbar .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .navbar .nav-links {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar .nav-links a {
+        margin-right: 20px;
+        text-decoration: none;
+        color: #fff;
+        font-size: 18px;
+    }
+
+    .navbar .profile {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar .profile img {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    .main-wrapper {
+        display: flex;
+        margin-top: 70px; /* Adjust for fixed navbar height */
+        width: 100%;
+    }
+
+    .sidebar {
+        width: 200px;
+        background-color: #000;
+        padding: 20px;
+        position: fixed;
+        top: 70px; /* Adjust for fixed navbar height */
+        bottom: 0;
+        left: 0;
+        overflow-y: auto;
+    }
+
+    .sidebar ul {
+        list-style-type: none;
+    }
+
+    .sidebar ul li {
+        margin: 15px 0;
+        position: relative;
+    }
+
+    .sidebar ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 18px;
+    }
+
+    .main-content {
+        flex: 1;
+        margin-left: 220px; /* Adjust for sidebar width */
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .main-content h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        color: #333;
+        margin-bottom: 30px;
+    }
+
+    .blog-posts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .blog-post {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-image {
+        max-width: 100%;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+
+    .post-info h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .post-info h2 a {
+        color: #333;
+        text-decoration: none;
+    }
+
+    .post-info h2 a:hover {
+        text-decoration: underline;
+    }
+
+    .post-meta {
+        color: #777;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+
+    .blog-post p {
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.6;
+    }
+
+    /* Pagination */
+    .pagination {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .pagination a {
+        color: #333;
+        text-decoration: none;
+        padding: 10px 15px;
+        margin: 0 5px;
+        background-color: #f4f4f4;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    .pagination a:hover {
+        background-color: #ddd;
+    }
+
+    .pagination a.active {
+        background-color: #333;
+        color: white;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+        .navbar .nav-links {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .blog-posts {
+            grid-template-columns: 1fr;
+        }
+
+        .main-content {
+            margin-left: 0;
+            padding: 10px;
+        }
+
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+            top: auto;
+        }
+
+        .sidebar ul li {
+            text-align: center;
+        }
+    }
+</style>
+<body>
+    <!-- Top Navbar -->
+    <nav class="navbar">
+        <div class="logo">FundSense.</div>
+        <div class="nav-links">
+            <a href="nfo.html">New Fund Offerings</a>
+            <a href="compare-funds.html">Compare Funds</a>
+            <a href="sip-calculator.html">SIP Calculator</a>
+            <a href="login.html">LogOut</a>
+
+        </div>
+        <div class="profile">
+            <img src="https://via.placeholder.com/40" alt="Profile">
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+        <!-- Sidebar Menu -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="tutorials.html">Tutorials</a></li>
+                <li><a href="reports.html">Reports</a></li>
+                <li><a href="queries.html">Queries by Investor</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Blog Content -->
+        <div class="main-content">
+            <h1>Our Tutorials</h1>
+            <div class="blog-posts">
+                <!-- Post 1 -->
+                <div class="blog-post">
+                    <img src="../images/a.jpg" alt="Blog Post 1" class="blog-image">
+                    <div class="post-info">
+                        <h2><a href="#">Understanding Mutual Funds: A Comprehensive Guide</a></h2>
+                        <p class="post-meta">Posted on October 2, 2024 | 2 min read</p>
+                        <p>Mutual funds are a popular way for investors to pool their money together to invest in a diversified portfolio...</p>
+                    </div>
+                </div>
+
+                <!-- Post 2 -->
+                <div class="blog-post">
+                    <img src="../images/b.jpg" alt="Blog Post 2" class="blog-image">
+                    <div class="post-info">
+                        <h2><a href="#">10 Tips for Smart Investing</a></h2>
+                        <p class="post-meta">Posted on September 28, 2024 | 2 min read</p>
+                        <p>Investing wisely is crucial for building wealth over time. Here are ten essential tips to help you make informed investment decisions...</p>
+                    </div>
+                </div>
+
+                <!-- More blog posts can go here -->
+
+            </div>
+
+            <div class="pagination">
+                <a href="#">&laquo; Previous</a>
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">Next &raquo;</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

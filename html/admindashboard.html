@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: #000;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .navbar .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .profile img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar .notifications {
+            position: relative;
+            margin-right: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .navbar .notifications .badge {
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 12px;
+            position: absolute;
+            top: -5px;
+            right: -10px;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #000;
+            padding: 20px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .sidebar ul li .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            background-color: #333;
+            width: 100%;
+            padding-left: 10px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar ul li:hover .dropdown-content {
+            display: block;
+        }
+
+        .sidebar ul li .dropdown-content a {
+            color: #fff;
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .sidebar ul li .dropdown-content a:hover {
+            background-color: #555;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .summary {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .profit-change {
+            color: green;
+            font-size: 16px;
+        }
+
+        .loss-change {
+            color: red;
+            font-size: 16px;
+        }
+
+        .users-section, .funds-section {
+            margin-top: 30px;
+        }
+
+        .users-section h2, .funds-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .chart {
+            margin-top: 20px;
+        }
+
+        #usersChart {
+            max-width: 100%;
+            height: 300px;
+        }
+
+        #fundsChart {
+            max-width: 100%;
+            height: 300px;
+        }
+
+        .dropdown-icon {
+            margin-left: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="navbar">
+        <div class="logo">FundSense.</div>
+        <div class="nav-links">
+            <a href="overview.html">Overview</a>
+            <li><a href="login.html">LogOut</a></li>
+        </div>
+        <div class="profile">
+            <div class="notifications">
+                <i class="fa fa-bell"></i>
+                <span class="badge">9+</span>
+            </div>
+            <img src="https://via.placeholder.com/40" alt="Profile">
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Menu -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="overview.html">Overview</a></li>
+                <li><a href="user.html">Users</a></li>
+                <li><a href="analysis.html">Analysis</a></li>
+                <li>
+                    <a href="#">Funds <span class="dropdown-icon">&#9660;</span></a>
+                    <div class="dropdown-content">
+                        <a href="funds.html">Funds</a><br>
+                        <a href="funds-details.html">Funds Details</a>
+                        <a href="fund-edit.html">Funds Edit</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header>
+                <h1>Welcome, Admin</h1>
+            </header>
+            
+            <section class="summary">
+                <div class="card total-funds">
+                    <h3>Total Funds</h3>
+                    <p>Rs.165.52k</p>
+                    <span class="profit-change">+25.30%</span>
+                </div>
+                <div class="card total-users">
+                    <h3>Total Users</h3>
+                    <p>534 Users</p>
+                </div>
+                <div class="card total-revenue">
+                    <h3>Total Revenue</h3>
+                    <p>Rs.1.15M</p>
+                    <span class="profit-change">+15.40%</span>
+                </div>
+            </section>
+
+            <section class="users-section">
+                <h2>User Statistics</h2>
+                <div class="chart">
+                    <canvas id="usersChart"></canvas>
+                </div>
+            </section>
+
+            <section class="funds-section">
+                <h2>Funds Performance</h2>
+                <div class="chart">
+                    <canvas id="fundsChart"></canvas>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Users Line Chart
+        var ctxUsers = document.getElementById('usersChart').getContext('2d');
+        var usersChart = new Chart(ctxUsers, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'New Users',
+                    data: [100, 150, 200, 250],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Funds Bar Chart
+        var ctxFunds = document.getElementById('fundsChart').getContext('2d');
+        var fundsChart = new Chart(ctxFunds, {
+            type: 'bar',
+            data: {
+                labels: ['Fund 1', 'Fund 2', 'Fund 3', 'Fund 4'],
+                datasets: [{
+                    label: 'Funds Performance',
+                    data: [50000, 40000, 60000, 70000],
+                    backgroundColor: ['#36a2eb', '#ffce56', '#ff6384', '#8e5ea2'],
+                    borderColor: ['#36a2eb', '#ffce56', '#ff6384', '#8e5ea2'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundsense - About</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #000000; /* Black background */
+            color: #ffffff; /* White text */
+        }
+
+        header {
+            background-color: #000000; /* Black header */
+            color: white; /* White text */
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white; /* White text */
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Light gray hover */
+        }
+
+        .hero {
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            padding: 100px 20px; /* Adjust padding as necessary */
+            background: #000000; /* Black background */
+            text-align: center;
+        }
+
+        .content-section {
+            padding: 50px 20px;
+            background-color: #000000; /* Black background for content */
+            text-align: center;
+        }
+
+        .content-section h2 {
+            font-size: 36px;
+            color: #ffffff; /* White text */
+            margin-bottom: 20px;
+        }
+
+        .roles {
+            display: flex; /* Use flexbox to arrange items in a row */
+            justify-content: center; /* Center the boxes horizontally */
+            flex-wrap: nowrap; /* Prevent wrapping to keep them side by side */
+            margin: 20px auto; /* Center the section with auto margins */
+            max-width: 1200px; /* Limit maximum width for better layout */
+            gap: 20px; /* Space between boxes */
+            padding: 20px; /* Add padding around the entire section */
+        }
+
+        .role-box {
+            background: rgba(255, 255, 255, 0.1); /* Light translucent background */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 15px;
+            transition: background 0.3s, transform 0.3s;
+            cursor: pointer;
+            flex: 1 0 200px; /* Allow boxes to grow and shrink; 200px is the base size */
+            max-width: 300px; /* Set a maximum width for boxes */
+            text-align: center; /* Center text */
+        }
+
+        .role-box:hover {
+            background: rgba(255, 255, 255, 0.2); /* Darker on hover */
+            transform: scale(1.02); /* Slightly enlarge on hover */
+        }
+
+        .role-details {
+            display: none; /* Hidden by default */
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.05); /* Slightly darker background */
+            padding: 10px;
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        .role-box img {
+            width: 80%; /* Set image width to 80% of the box */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 10px; /* Space between image and text */
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #000000; /* Black footer */
+            color: white; /* White text */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1 style="font-size: 24px; color: white;">Fundsense.</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#signup" class="btn">Sign Up</a></li>
+                <li><a href="#" class="btn" onclick="openModal()">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Roles and Operations</h1>
+    <section class="roles content-section">
+       
+        
+        <div class="role-box" onclick="toggleDetails('adminDetails')">
+            <img src="/images/admin.jpg" alt="Admin Role Image"> <!-- Admin image -->
+            <h3>Admin</h3>
+            <div id="adminDetails" class="role-details">Platform Management: Oversee the entire platform’s functionality and user experience.<br>
+                User Account Management: Manage user accounts, including creation, updates, and deletions.<br>
+                Content Monitoring: Ensure timely updates of educational content and market data.<br>
+                Security Oversight: Maintain user authentication and access control to safeguard sensitive information.<br>
+                Content Moderation: Review and moderate educational materials to ensure accuracy and relevance.
+            </div>
+        </div>
+
+        <div class="role-box" onclick="toggleDetails('investorDetails')">
+            <img src="/images/investor.jpg" alt="Investor Role Image"> <!-- Investor image -->
+            <h3>Investor</h3>
+            <div id="investorDetails" class="role-details">Mutual Fund Exploration: Use the platform to compare various mutual funds.<br>
+                Risk Assessment: Evaluate the risk profiles of different investment options.<br>
+                Portfolio Tracking: Monitor and track the performance of their investment portfolios.<br>
+                Tailored Suggestions: Access personalized investment suggestions based on their financial goals.<br>
+                Educational Resource Access: Utilize educational content to enhance their investment knowledge.
+            </div>
+        </div>
+
+        <div class="role-box" onclick="toggleDetails('advisorDetails')">
+            <img src="/images/advisor.jpg" alt="Financial Advisor Role Image"> <!-- Financial Advisor image -->
+            <h3>Financial Advisor</h3>
+            <div id="advisorDetails" class="role-details">Personalized Investment Advice: Offer tailored advice to investors based on individual risk tolerances and goals.<br>
+                Educational Content Creation: Develop and contribute educational materials for the platform.<br>
+                Market Insights: Provide insights and analysis on market trends to assist investors in decision-making.<br>
+                Mutual Fund Selection Assistance: Help investors choose suitable mutual funds aligning with their financial strategies.
+            </div>
+        </div>
+
+        <div class="role-box" onclick="toggleDetails('analystDetails')">
+            <img src="/images/analyst.jpg" alt="Data Analyst Role Image"> <!-- Data Analyst image -->
+            <h3>Data Analyst</h3>
+            <div id="analystDetails" class="role-details">Investment Trend Analysis: Analyze market trends and investment behavior to provide valuable insights.<br>
+                Performance Data Updates: Regularly update the performance metrics of various mutual funds.<br>
+                Report Generation: Create reports to summarize findings and inform stakeholders about investment trends.
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Fundsense. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Toggle function for collapsible sections
+        function toggleDetails(detailsId) {
+            const details = document.getElementById(detailsId);
+            details.style.display = details.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

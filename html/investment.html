@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Investments</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: #000;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header h1 {
+            font-size: 32px;
+        }
+
+        .balance {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .balance h2 {
+            font-size: 24px;
+        }
+
+        .balance p {
+            font-size: 18px;
+            color: #888;
+        }
+
+        .transaction-list {
+            margin-top: 30px;
+        }
+
+        .transaction-list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .transaction-list th, .transaction-list td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .transaction-list th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1 style="font-size: 24px; color: white;">Fundsense.</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Investments Section -->
+        <div class="section-header">
+            <h1>My Investments</h1>
+            <p>Total Portfolio Value: <strong>$68,250.50</strong></p>
+        </div>
+
+        <div class="balance">
+            <h2>Net Investment Returns</h2>
+            <p>$12,500.75</p>
+        </div>
+
+        <div class="transaction-list">
+            <h2>Recent Investment Activity</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Investment Type</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>24/03/2024</td>
+                        <td>Stock Purchase</td>
+                        <td>$5,000</td>
+                        <td>Completed</td>
+                    </tr>
+                    <tr>
+                        <td>18/03/2024</td>
+                        <td>Real Estate</td>
+                        <td>$25,000</td>
+                        <td>In Progress</td>
+                    </tr>
+                    <tr>
+                        <td>10/03/2024</td>
+                        <td>Bond</td>
+                        <td>$3,500</td>
+                        <td>Completed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

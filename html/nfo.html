@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Fund Offerings</title>
+    <style>
+        /* Reset and basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Top Navbar Styles */
+        .navbar {
+            background-color: #000;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #f0e68c;
+        }
+
+        .navbar .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .profile img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        /* Sidebar Styles */
+        .container {
+            display: flex;
+            width: 100%;
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #000;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #444;
+        }
+
+        .sidebar ul li .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            background-color: #333;
+            width: 100%;
+            padding-left: 10px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar ul li:hover .dropdown-content {
+            display: block;
+        }
+
+        .sidebar ul li .dropdown-content a {
+            color: #fff;
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .sidebar ul li .dropdown-content a:hover {
+            background-color: #555;
+        }
+        
+        .nfo11TitleBox {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 50px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .nfo11Title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            margin: 0;
+        }
+        .nfo11TitleBreak {
+            font-size: 36px;
+            font-weight: bold;
+            color: #007bff;
+            text-align: center;
+        }
+        .nfo11TitleBorder {
+            width: 100px;
+            height: 4px;
+            background-color: #007bff;
+            margin: 10px 0;
+        }
+        .nfo11TitleDetails {
+            font-size: 18px;
+            color: #666;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container1 {
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            margin-bottom: -100px;
+        }
+       
+
+        .fund-card {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 1000px;
+        }
+        .fund-logo img {
+            width: 50px;
+            height: 50px;
+        }
+        .fund-details {
+            flex-grow: 1;
+            padding-left: 20px;
+        }
+        .fund-name {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .risk-level, .fund-type {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .fund-dates {
+            text-align: right;
+        }
+        .launch-date, .close-date {
+            font-size: 0.9em;
+        }
+        @media (max-width: 768px) {
+            .nfo11Title {
+                font-size: 28px;
+            }
+            .fund-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .fund-dates {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">Fundsense</div>
+        <nav class="top-nav">
+            <div class="nav-links">
+                <a href="advisordashboard.html">Dashboard</a>
+              
+                <a href="login.html">LogOut</a>
+            </div>
+        </nav>
+    </header>
+
+<div class="nfo11TitleBox">
+    <h1 class="nfo11Title">New Fund <br>
+        <div class="nfo11TitleBreak">Offerings</div>
+    </h1>
+    <div class="nfo11TitleBorder"></div>
+    <div class="nfo11TitleDetails">
+        NFO is the first subscription <br>
+        offering for any new fund being <br>
+        launched by an investment <br>
+        company.
+    </div>
+</div>
+
+<div class="container">
+    <div class="container1">Open now (3)</div>
+    <div class="nfo11CardBox">
+            <div class="fund-card">
+                <div class="fund-logo">
+                    <img src="https://assets-netstorage.groww.in/mf-assets/logos/barodabnpparibasmutualfund_groww.png" alt="Baroda BNP Paribas Mutual Fund Logo" loading="lazy">
+                </div>
+                <div class="fund-details">
+                    <div class="fund-name">Baroda BNP Paribas Nifty200 Momentum 30 Index Fund Direct-Growth</div>
+                    <div class="risk-level">Very High Risk</div>
+                    <div class="fund-type">Equity</div>
+                </div>
+                <div class="fund-dates">
+                    <div class="launch-date">Launch Date - 25 Sep '24</div>
+                    <div class="close-date">Close Date - 09 Oct '24</div>
+                </div>
+</div>
+<div class="fund-card">
+                <div class="fund-logo">
+                    <img src="
+                    https://assets-netstorage.groww.in/mf-assets/logos/icici_groww.png" alt="ICICI LOGO" loading="lazy">
+                </div>
+                <div class="fund-details">
+                    <div class="fund-name">ICICI Prudential Nifty200 Value 30 INdex Fund</div>
+                    <div class="risk-level">Very High Risk</div>
+                    <div class="fund-type">Equity</div>
+                </div>
+                <div class="fund-dates">
+                    <div class="launch-date">Launch Date - 30 Sep '24</div>
+                    <div class="close-date">Close Date - 14 Oct '24</div>
+                </div>
+            </div>
+            <div class="fund-card">
+                <div class="fund-logo">
+                    <img src="https://assets-netstorage.groww.in/mf-assets/logos/birla_groww.png" alt="Aditya Birla" loading="lazy">
+                </div>
+                <div class="fund-details">
+                    <div class="fund-name">
+                        Aditya Birla Sun Life CRISIL-IBX AAA NBFC-HFC Index</div>
+                    <div class="risk-level">Moderate Risk</div>
+                    <div class="fund-type">Dept</div>
+                </div>
+                <div class="fund-dates">
+                    <div class="launch-date">Launch Date - 08 Oct '24</div>
+                    <div class="close-date">Close Date - 14 Oct '24</div>
+                </div>
+            </div>
+        </div>
+        </a>
+        <!-- Repeat similar structure for other funds -->
+    </div>
+    <div class="anfo44Para bodyBase"><p class="anfo44FirstPara"><h2 class="anfo44AboutNfo headingLarge">About NFO</h2>Any <a class="anfo44AmcLink" href="/mutual-funds/amc">asset management company</a> launching a new mutual fund in the market can raise capital for the same by announcing a new fund offer (<span>NFO</span>). Similar to the concept of an initial public offering (IPO), details of the portfolio such as the company shares to the purchased, kind of securities to be procured, fund manager, etc. are incorporated in such new fund offers.</p><p>
+        Through such offers, investors can purchase units of a mutual fund at the subscription price, usuallyset at Rs.10 per unit. Both open-ended and closed-end funds are launched via new fund offers for a limited time period,
+         after which such mutual funds are traded in the market based on their corresponding net asset value (NAV).</p>
+         <p><h3 class="anfo44SubHeading bodyXLarge"><strong>Understanding New Fund Offering</strong></h3><p>As per SEBI
+             regulations, a new fund offering can remain active in the market for a maximum of 30 days. Offer price 
+             to subscribe to such mutual funds is Rs. 10, and the collected revenue can be utilised in procuring
+              securities of various publicly traded companies listed in a stock exchange.</p></p>
+              <p class="anfo44ParaStrong">After a <strong>new fund offer</strong> closes, any trade
+                 of a respective mutual fund has to be done based on the NAV of the fund. Subscribing 
+                 to a <a class="anfo44AmcLink" href="/mutual-funds">mutual fund</a> through new fund offers
+                  is profitable, as investors get access to respective units at a nominal cost. hence, profits
+                   realised at a later date is substantial, allowing individuals to realise immense capital gains
+                    once the mutual fund starts trading in the open market.</p><p><h3 class="anfo44SubHeading bodyXLarge"><strong>Types of New Fund Offer –</strong></h3></p><div class="anfo44ParaStrong"><strong>1. Close-ended funds</strong></div><p>These mutual funds are associated with a fixed corpus, raised through new fund offer. After the subscription period is over, no further addition to the portfolio is allowed, and the NAV of the fund is determined based on the number of units in circulation with respect to the total value of underlying assets.</p><p>Any purchase or sale of mutual fund units has to be done through market exchange, similar to stock market trading. The price at which the NAV units are traded is subject to the overall demand and supply in the market, determining whether a unit is traded at a premium or discount.</p><p>Let us consider an example. Miss Pubali has subscribed to X mutual fund to procure 100 units at Rs. 10 each. After the mutual fund commenced operating in the stock market, the NAV stood at Rs. 12 (due to fluctuation in the portfolio asset prices). Thus, the value of her investment currently stands at Rs. 1,200 (12x100).</p><p>For any reason, Pubali decides to sell her investment in the stock market, wherein investors are willing to pay Rs. 15 per unit. Hence, we can conclude that the mutual fund is trading at a premium to its NAV price.</p><p>On the other hand, in case of negative outlook regarding the performance of fund X, the price of each mutual fund can fall as well, to, say, Rs. 8 per unit. In such cases, X is trading at a discount to its NAV price, and selling respective shares would incur a loss.</p><div class="anfo44ParaStrong"><strong>2. Open-ended funds</strong></div><p>Most mutual funds can be categorized as open-ended funds, wherein the number of units of the respective fund keeps fluctuating with a corresponding demand. New fund offerings allow individuals to procure units of a mutual fund before its NAV has been determined, thereby allowing them to gain profits in the long run. After a mutual fund starts operating, investors have to pay the respective net asset value for obtaining each unit of the fund.</p><p>For example, Monica invests in an open-ended mutual fund Y during itsnew fund offerwith Rs. 500, procuring 50 units. Upon activation of the fund, the NAV value stands at Rs.
+                        20 per unit (as perthe performance of the underlying assets), implying any new purchases have to be made at this price. If she decides to sell her share of the fund, Monika is eligible to receive Rs. 1,000 (50x20) at the new NAV price.</p><p>Both open-ended and closed-end funds can be chosen as a tool for investment, as both are likely to generate capital gains as well as dividend returns (depending upon the type of investment scheme). While open-ended funds tend to be actively managed by portfolio managers, close-ended funds are likely to be passively managed to replicate the returns of a benchmark index.</p><p><h3 class="anfo44SubHeading bodyXLarge"><strong>How NFO is a Good Opportunity?</strong></h3></p><p>The fund houses make use of NFOs to raise money from the public to purchase securities such as equity shares, bonds, etc in the market. Moreover,New Fund Offeringis usually cheaper as it is new to the market. They are often matched compared to Initial Public Offering (IPO) in which investors can purchase shares before getting listed on the exchange. Also, NFOs are marketed quite well which definitely tempts you to not miss it. However, it’s your hard-earned money and you must do thorough research and out in a well-researched judgement before proceeding with the investment.</p><p><h3 class="anfo44SubHeading bodyXLarge"><strong>How to Invest in an NFO?</strong></h3></p><p>There are two ways through which one can invest their money in NFO. Investing in NFO is overall a seamless process and one can choose any one of the below-mentioned methods forinvestment in NFO. All the methods have their own perks; let’s delve deeper into it and check out what are these methods;</p><div class="anfo44ParaStrong"><strong>1. Through a Broker</strong></div><p>This is perhaps the basic method of investing in an NFO. One can always reach out to a broker and they can help you invest in a new fund offer. Always make sure that the broker you are consulting isan authorized one. Your broker can help you out with completing all the formalities regarding the application for NFO. One of the most important benefits of investing through a broker is you get doorstep services and also information regarding the future performance of the fund that you are investing in.</p><div class="anfo44ParaStrong"><strong>2. Through Online-trading account</strong></div><p>This is another method of investing and is convenient too. If you are already into investing in sharesand mutual funds, you must have an online trading account. The same account can be used to investin NFOs as well. The purchasing and selling of the NFO units can be done online. The online trading account can also be used to track the Net Asset Value(NAV) of the investments made.</p><div class="anfo44ParaStrong"><strong>3. Through Groww</strong></div><p>You can also invest in any New Fund Offerings on Groww by following some simple steps:</p><ul><li class="anfo44List bodyLarge">Sign up at Groww.in and complete KYC if you are a new user or sign in if you are an existing user</li><li class="anfo44List bodyLarge">In the search bar, type the <strong>NFO Mutual fund</strong> name which you want toinvest in</li><li class="anfo44List bodyLarge">On the fund page, you can check out all the additional information related to the schemesuch as asset allocation, fund managers, holdings and much more</li><li class="anfo44List bodyLarge">Select whether you want to go for a One-time payment (Lumpsum) or do a SIP and start investing</li></ul><p><h3 class="anfo44SubHeading bodyXLarge"><strong>Things to Keep in Mind Before Investing in NFO Funds -</strong></h3></p><ul><li class="anfo44List bodyLarge"><strong>The reputation of an AMC:</strong> History of an asset management company or investment bank heavily influences the future performance of a new NFO launched.Correspondingly, the background of all portfolio managers should be analysed thoroughly in this respect, primarily if the mutual fund is actively managed.</li><li class="anfo44List bodyLarge"><strong>Cost of investment:</strong> An <strong>NFO mutual fund</strong> comes with a minimum subscription offer, wherein a stipulated number of units have to be bought to participate in the new fund offering.Thus, a significant investment burden is often imposed on individuals willing to partake in the scheme.</li><li class="anfo44List bodyLarge"><strong>Nature of securities:</strong> An NFO announcement comes with a mandate listing, which incorporates details regarding the types of stock market instruments to be obtained with the raised capital. Going through such documentation is of utmost importance as it indicates the nature of risk associated with the capital invested, as well as expected return on investment (ROI).</li><p>Risk-averse individuals should steer clear of equity mutual funds as well as small and mid-cap companies, and hence, opt for NFO funds primarily investing in debt funds or blue-chip companies. Individuals with a high aptitude for risk, on the other hand, should consider investing in aggressively managed equity funds operated by trained portfolio managers.</p><p class="anfo44ParaStrong"><strong>A new fund offer</strong> effectively reduces the cost of investing in mutual funds. Proper assessment of all corresponding factors can help in realizing substantial profits in the long run, through capital gains or dividend pay-outs. However, many individuals often miss out on such investment options as they fail to receive information regarding the same. Most asset management companies release information regarding the same through marketing campaigns in financial journals and press releases, which can be tracked accordingly through their official website.</p></ul><p><h3 class="anfo44SubHeading bodyXLarge"><strong>Benefits of Investing in an NFO</strong></h3></p><p>An investment made in any NFO brings a lot of advantages like diversifying your portfolio by investing in new strategies, great flexibility, profitable, liquidity to name a few. Furthermore, the investment objectives, expected return on investment and the reason for the fund are provided with clarity right before starting. Let’s check some of the benefits of NFO:</p><p class="anfo44ParaStrong"><strong>Investment in New Strategies:</strong> Close-ended funds provides you with a chance to invest in new and innovative strategies that existing open-ended funds may not.</p><p class="anfo44ParaStrong"><strong>Great Flexibility:</strong> Close-ended funds also offers the flexibility of when to invest your money in the market. Even if the timing is bad for investment and the NFO is launched at a market peak, the fund manager can manage to hold a part of your funds to invest them later.</p><p class="anfo44ParaStrong"><strong>No Large Flows:</strong> Unlike open-ended funds, investors in close-ended funds are locked-in as per the tenure of the fund and the fund manager can focus on proper stick selection andtracking. Investment in a close-ended fund can only be made through NFO.</p><p class="anfo44ParaStrong"><strong>Lock-in support:</strong> What matters more is spending time in the market rather than backing out within a short span of time. Many investors just spend two years in the market and end up impairing their returns. However, the lock-in period provided by close-ended funds of 3-4 years helps investors from bad investing behaviour.</p><div class="anfo44SubHeading bodyXLarge"><strong>On a Closing Note</strong></div><p>Investing in New Fund Offers can have multiple benefits if you have done your homework well andknow the core meaning of what is NFO and what benefits you can avail from them. Having comprehensive knowledge regarding a new fund offer and its date of activation can help investors multiply their wealth through promising investment schemes.It is advisable to read the product-related terms and conditions well before settling in for the final investment.</p></div>
+                    </div>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Goals</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            background-color: #36a2eb;
+            padding: 15px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .navbar .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            padding-top: 60px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px 20px;
+        }
+
+        .sidebar ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #ddd;
+            display: block;
+        }
+
+        .container {
+            margin-left: 220px; /* Adjust for sidebar width */
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .goals-list {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .goal-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            text-align: center;
+        }
+
+        .goal-card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .goal-card p {
+            font-size: 18px;
+            color: #888;
+        }
+
+        .goal-card .progress-bar {
+            margin-top: 15px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 20px;
+        }
+
+        .goal-card .progress-bar div {
+            height: 100%;
+            background-color: #36a2eb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="navbar">
+        <div class="logo">FundSense.</div>
+        <div class="nav-links">
+            <a href="#">Dashboard</a>
+            <a href="#">Portfolio</a>
+            <a href="#">Transaction</a>
+            <a href="#">News</a>
+        </div>
+    </nav>
+
+    <!-- Side Navbar -->
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="wallet.html">Wallet</a></li>
+            <li><a href="goals.html">My Goals</a></li>
+            <li><a href="loans.html">My Loans</a></li>
+            <li><a href="investment.html">Investment</a></li>
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="calculator.html">Calculators</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>My Goals</h1>
+        <div class="goals-list">
+            <div class="goal-card">
+                <h2>Car Purchase</h2>
+                <p>Goal: $50,000</p>
+                <p>Saved: $30,000</p>
+                <div class="progress-bar">
+                    <div style="width: 60%;"></div>
+                </div>
+            </div>
+            <div class="goal-card">
+                <h2>House Renovation</h2>
+                <p>Goal: $100,000</p>
+                <p>Saved: $70,000</p>
+                <div class="progress-bar">
+                    <div style="width: 70%;"></div>
+                </div>
+            </div>
+            <div class="goal-card">
+                <h2>Vacation Fund</h2>
+                <p>Goal: $15,000</p>
+                <p>Saved: $5,000</p>
+                <div class="progress-bar">
+                    <div style="width: 33%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

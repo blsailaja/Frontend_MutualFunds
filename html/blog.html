@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundsense - Blog</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #000000; /* Black background */
+            color: #ffffff; /* White text */
+        }
+
+        header {
+            background-color: #000000; /* Black header */
+            color: white; /* White text */
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white; /* White text */
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Light gray hover */
+        }
+
+        .content-section {
+            padding: 50px 20px;
+            background-color: #000000; /* Black background for content */
+            text-align: center;
+        }
+
+        .content-section h2 {
+            font-size: 36px;
+            color: #ffffff; /* White text */
+            margin-bottom: 20px;
+        }
+
+        .blog-post {
+            max-width: 800px; /* Limit maximum width */
+            margin: 20px auto; /* Center the posts */
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1); /* Light translucent background */
+            border-radius: 5px; /* Rounded corners */
+            text-align: left; /* Left-align text */
+        }
+
+        .blog-post h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .blog-post p {
+            margin-bottom: 15px;
+        }
+
+        .blog-post time {
+            font-size: 12px; /* Smaller font for date */
+            color: rgba(255, 255, 255, 0.7); /* Light gray for date */
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #000000; /* Black footer */
+            color: white; /* White text */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1 style="font-size: 24px; color: white;">Fundsense.</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#signup" class="btn">Sign Up</a></li>
+                <li><a href="#" class="btn" onclick="openModal()">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="content-section">
+        <h2>Blogs</h2>
+
+        <div class="blog-post">
+            <h3>Understanding Mutual Funds: A Beginner's Guide</h3>
+            <time datetime="2024-10-01">October 1, 2024</time>
+            <p>Investing in mutual funds can be a great way to grow your wealth. In this article, we explore the basics of mutual funds, their advantages, and how to get started.</p>
+            <p><a href="#">Read more...</a></p>
+        </div>
+
+        <div class="blog-post">
+            <h3>Top 5 Investment Strategies for 2024</h3>
+            <time datetime="2024-09-15">September 15, 2024</time>
+            <p>As the financial landscape continues to evolve, it’s important to stay ahead of the curve. Here are the top five investment strategies to consider this year.</p>
+            <p><a href="#">Read more...</a></p>
+        </div>
+
+        <div class="blog-post">
+            <h3>The Importance of Financial Planning</h3>
+            <time datetime="2024-08-20">August 20, 2024</time>
+            <p>Financial planning is essential for achieving your goals. This post discusses the key elements of effective financial planning and how to create your own plan.</p>
+            <p><a href="#">Read more...</a></p>
+        </div>
+
+        <div class="blog-post">
+            <h3>How to Choose the Right Investment for You</h3>
+            <time datetime="2024-07-10">July 10, 2024</time>
+            <p>With so many options available, choosing the right investment can be challenging. We provide a framework to help you make informed decisions about your investments.</p>
+            <p><a href="#">Read more...</a></p>
+        </div>
+
+    </section>
+      
+    
+
+    <footer>
+        <p>&copy; 2024 Fundsense. All Rights Reserved.</p>
+    </footer>
+    <script>
+         // Modal functionality
+         function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("myModal")) {
+                closeModal();
+            }
+        }
+    </script>
+    
+</body>
+</html>
